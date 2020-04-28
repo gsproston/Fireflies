@@ -139,6 +139,11 @@ copy "$(ProjectDir)libs\sfml-window-d-2.dll" "$(TargetDir)"</Command>
       <AdditionalLibraryDirectories>A:\Germingi\Downloads\sfml\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(ProjectDir)libs\sfml-graphics-2.dll" "$(TargetDir)"
+copy "$(ProjectDir)libs\sfml-system-2.dll" "$(TargetDir)"
+copy "$(ProjectDir)libs\sfml-window-2.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -157,6 +162,11 @@ copy "$(ProjectDir)libs\sfml-window-d-2.dll" "$(TargetDir)"</Command>
       <AdditionalLibraryDirectories>A:\Germingi\Downloads\sfml\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy "$(ProjectDir)libs\sfml-graphics-2.dll" "$(TargetDir)"
+copy "$(ProjectDir)libs\sfml-system-2.dll" "$(TargetDir)"
+copy "$(ProjectDir)libs\sfml-window-2.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
