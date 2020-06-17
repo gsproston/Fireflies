@@ -12,6 +12,19 @@ int main()
 
 	window.setFramerateLimit(60);
 
+	// create 2D array of fireflies
+	// int represent luminosity
+	std::array<std::array<float, numFireflies>, numFireflies> aFireflies;
+
+	// init array to random values
+	for (int x = 0; x < aFireflies.size(); ++x)
+	{
+		for (int y = 0; y < aFireflies[x].size(); ++y)
+		{
+			aFireflies[x][y] = (rand() % 101) / 10;
+		}
+	}
+
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -29,17 +42,13 @@ int main()
 
 		window.display();
 
-		// create 2D array of fireflies
-		// int represent luminosity
-		std::array<std::array<int, numFireflies>, numFireflies> fireflies;
-
 		// draw the array of fireflies
-		for (int x = 0; x < fireflies.size(); ++x)
+		for (int x = 0; x < aFireflies.size(); ++x)
 		{
-			for (int y = 0; y < fireflies[x].size(); ++y)
+			for (int y = 0; y < aFireflies[x].size(); ++y)
 			{
-				sf::CircleShape firefly(fireflyRadius);
-				firefly.setFillColor(sf::Color::White);
+				sf::CircleShape firefly(aFireflies[x][y]);
+				firefly.setFillColor(sf::Color::Yellow);
 				firefly.setPosition(x * fireflyRadius * 2, y * fireflyRadius * 2);
 				window.draw(firefly);
 			}
