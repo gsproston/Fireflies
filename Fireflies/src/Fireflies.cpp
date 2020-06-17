@@ -36,26 +36,30 @@ int main()
 		{
 			// calculate amount of movement
 			float diff = elapsedTime.asSeconds() * freq * fireflyRadius;
-			while (diff > fireflyRadius)
-				diff -= fireflyRadius;
 
-			if (glowing)
+			while (diff > 0)
 			{
-				rad += diff;
-				if (rad > fireflyRadius)
+				const float currdiff = diff > fireflyRadius ? fireflyRadius : diff;
+				if (glowing)
 				{
-					rad = rad - (fireflyRadius - rad) * 2;
-					glowing = false;
+					rad += currdiff;
+					if (rad > fireflyRadius)
+					{
+						rad = rad - (rad - fireflyRadius) * 2;
+						glowing = false;
+					}
 				}
-			}
-			else
-			{
-				rad -= diff;
-				if (rad < 0)
+				else
 				{
-					rad = -rad;
-					glowing = true;
+					rad -= currdiff;
+					if (rad < 0)
+					{
+						rad = -rad;
+						glowing = true;
+					}
 				}
+
+				diff -= currdiff;
 			}
 		}
 
