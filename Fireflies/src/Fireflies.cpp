@@ -2,8 +2,15 @@
 
 #include <array>
 
+float GetRandFloat(const float lower, const float upper)
+{
+	return lower + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (upper - lower)));
+}
+
 int main()
 {
+	srand(time(0));
+
 	sf::Clock clock;
 	sf::Time elapsedTime = clock.restart();
 
@@ -19,16 +26,19 @@ int main()
 	{
 		tFirefly()
 		{
-			freq = rand() % 2 + 0.5;
+			freq = GetRandFloat(0.5, 1.5);
 			// rad between 0 and fireflyRadius
-			rad = (rand() % (fireflyRadius * 10 + 1)) / 10.f;
+			rad = GetRandFloat(0, fireflyRadius);
 			glowing = rand() % 2;
 		}
 
 		void Tick(sf::Time elapsedTime)
 		{
 			// calculate amount of movement
-			const float diff = elapsedTime.asSeconds() * freq * fireflyRadius;
+			float diff = elapsedTime.asSeconds() * freq * fireflyRadius;
+			while (diff > fireflyRadius)
+				diff -= fireflyRadius;
+
 			if (glowing)
 			{
 				rad += diff;
