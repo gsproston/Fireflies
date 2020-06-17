@@ -12,16 +12,28 @@ int main()
 
 	window.setFramerateLimit(60);
 
+	struct tFirefly
+	{
+		tFirefly()
+		{
+			freq = 1.0f;
+			rad = (rand() % 101) / 10.0f;
+		}
+
+		float freq;
+		float rad;
+	};
+
 	// create 2D array of fireflies
 	// int represent luminosity
-	std::array<std::array<float, numFireflies>, numFireflies> aFireflies;
+	std::array<std::array<tFirefly, numFireflies>, numFireflies> aFireflies;
 
 	// init array to random values
 	for (int x = 0; x < aFireflies.size(); ++x)
 	{
 		for (int y = 0; y < aFireflies[x].size(); ++y)
 		{
-			aFireflies[x][y] = (rand() % 101) / 10;
+			aFireflies[x][y] = tFirefly();
 		}
 	}
 
@@ -47,7 +59,7 @@ int main()
 		{
 			for (int y = 0; y < aFireflies[x].size(); ++y)
 			{
-				sf::CircleShape firefly(aFireflies[x][y]);
+				sf::CircleShape firefly(aFireflies[x][y].rad);
 				firefly.setFillColor(sf::Color::Yellow);
 				firefly.setPosition(x * fireflyRadius * 2, y * fireflyRadius * 2);
 				window.draw(firefly);
