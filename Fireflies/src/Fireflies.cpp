@@ -2,7 +2,7 @@
 
 #include <array>
 #include "Constants.h"
-#include "Firefly.h"
+#include "Grid.h"
 
 
 int main()
@@ -17,18 +17,7 @@ int main()
 
 	window.setFramerateLimit(60);
 
-	// create 2D array of fireflies
-	// int represent luminosity
-	std::array<std::array<Firefly, Constants::NUM_FIREFLIES>, Constants::NUM_FIREFLIES> aFireflies;
-
-	// init array to random values
-	for (int x = 0; x < aFireflies.size(); ++x)
-	{
-		for (int y = 0; y < aFireflies[x].size(); ++y)
-		{
-			aFireflies[x][y] = Firefly();
-		}
-	}
+	Grid::Init();
 
 	while (window.isOpen())
 	{
@@ -48,28 +37,13 @@ int main()
 		window.clear();
 
 		// draw the array of fireflies
-		for (int x = 0; x < aFireflies.size(); ++x)
-		{
-			for (int y = 0; y < aFireflies[x].size(); ++y)
-			{
-				sf::CircleShape circleShape = aFireflies[x][y].GetCircle();
-				circleShape.move(x * Constants::FIREFLY_RADIUS * 2.f,
-					y * Constants::FIREFLY_RADIUS * 2.f);
-				window.draw(circleShape);
-			}
-		}
+		Grid::Draw(window);
 
 		window.display();
 		elapsedTime = clock.restart();
 
 		// tick the array of fireflies
-		for (int x = 0; x < aFireflies.size(); ++x)
-		{
-			for (int y = 0; y < aFireflies[x].size(); ++y)
-			{
-				aFireflies[x][y].Tick(elapsedTime);
-			}
-		}
+		Grid::Tick(elapsedTime);
 	}
 
 	return 0;
