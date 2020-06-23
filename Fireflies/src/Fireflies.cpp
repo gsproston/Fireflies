@@ -105,7 +105,7 @@ int main()
 			{
 				sf::CircleShape firefly(aFireflies[x][y].rad);
 				firefly.setFillColor(sf::Color::Yellow);
-				firefly.setPosition(x * fireflyRadius * 2, y * fireflyRadius * 2);
+				firefly.setPosition(x * fireflyRadius * 2 - aFireflies[x][y].rad, y * fireflyRadius * 2 - aFireflies[x][y].rad);
 				window.draw(firefly);
 			}
 		}
