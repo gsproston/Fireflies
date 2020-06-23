@@ -14,6 +14,14 @@ Firefly::Firefly()
 	glowing = rand() % 2;
 }
 
+sf::CircleShape Firefly::GetCircle() const
+{
+	sf::CircleShape circleShape(rad);
+	circleShape.setFillColor(sf::Color::Yellow);
+	circleShape.setPosition(Constants::FIREFLY_RADIUS - rad, Constants::FIREFLY_RADIUS - rad);
+	return circleShape;
+}
+
 void Firefly::Tick(sf::Time elapsedTime)
 {
 	// calculate amount of movement

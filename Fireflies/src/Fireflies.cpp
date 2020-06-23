@@ -52,12 +52,10 @@ int main()
 		{
 			for (int y = 0; y < aFireflies[x].size(); ++y)
 			{
-				sf::CircleShape firefly(aFireflies[x][y].rad);
-				firefly.setFillColor(sf::Color::Yellow);
-				firefly.setPosition(
-					x * Constants::FIREFLY_RADIUS * 2 - aFireflies[x][y].rad, 
-					y * Constants::FIREFLY_RADIUS * 2 - aFireflies[x][y].rad);
-				window.draw(firefly);
+				sf::CircleShape circleShape = aFireflies[x][y].GetCircle();
+				circleShape.move(x * Constants::FIREFLY_RADIUS * 2.f,
+					y * Constants::FIREFLY_RADIUS * 2.f);
+				window.draw(circleShape);
 			}
 		}
 
