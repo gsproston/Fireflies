@@ -22,7 +22,24 @@ sf::CircleShape Firefly::GetCircle() const
 	return circleShape;
 }
 
-void Firefly::Tick(sf::Time elapsedTime)
+void Firefly::Sync(const std::vector<Firefly>& vNeighbours)
+{
+	float avgFreq = 0.f;
+	float avgRad = 0.f;
+
+	for (uint8_t i = 0; i < vNeighbours.size(); ++i)
+	{
+		avgFreq += vNeighbours[i].freq;
+		avgRad += vNeighbours[i].rad;
+	}
+	avgFreq /= vNeighbours.size();
+	avgRad /= vNeighbours.size();
+
+	freq += (avgFreq - freq) / 10;
+	rad += (avgRad - rad) / 10;
+}
+
+void Firefly::Tick(const sf::Time& elapsedTime)
 {
 	// calculate amount of movement
 	float diff = elapsedTime.asSeconds() * freq * Constants::FIREFLY_RADIUS;
