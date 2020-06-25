@@ -39,17 +39,6 @@ namespace Grid
 
 			return vNeighbours;
 		}
-
-		void Copy(fireflyArrayType& dest, const fireflyArrayType& source)
-		{
-			for (uint8_t x = 0; x < source.size(); ++x)
-			{
-				for (uint8_t y = 0; y < source[x].size(); ++y)
-				{
-					dest[x][y] = source[x][y];
-				}
-			}
-		}
 	}
 
 	void Init()
@@ -61,7 +50,7 @@ namespace Grid
 				aFireflies[x][y] = Firefly();
 			}
 		}
-		Copy(aFirefliesCopy, aFireflies);
+		aFirefliesCopy = aFireflies;
 	}
 
 	void Draw(sf::RenderWindow& window)
@@ -87,7 +76,7 @@ namespace Grid
 				aFireflies[x][y].Tick(elapsedTime);
 			}
 		}
-		Copy(aFirefliesCopy, aFireflies);
+		aFirefliesCopy = aFireflies;
 
 		for (uint8_t x = 0; x < aFireflies.size(); ++x)
 		{
@@ -96,6 +85,6 @@ namespace Grid
 				aFirefliesCopy[x][y].Sync(GetNeighbours(x, y));
 			}
 		}
-		Copy(aFireflies, aFirefliesCopy);
+		aFireflies = aFirefliesCopy;
 	}
 }
