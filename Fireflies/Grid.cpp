@@ -14,10 +14,9 @@ namespace Grid
 		fireflyArrayType aFireflies;
 		fireflyArrayType aFirefliesCopy;
 
-		std::vector<Firefly> GetNeighbours(const uint8_t x, const uint8_t y)
+		void GetNeighbours(const uint8_t x, const uint8_t y,
+			std::vector<Firefly*>& vNeighbours)
 		{
-			std::vector<Firefly> vNeighbours;
-
 			for (int8_t i = -1; i <= 1; ++i)
 			{
 				const uint8_t xpos = x + i;
@@ -33,11 +32,9 @@ namespace Grid
 					if (ypos < 0 || ypos >= aFireflies[xpos].size())
 						continue;
 
-					vNeighbours.push_back(aFireflies[xpos][ypos]);
+					vNeighbours.push_back(&aFireflies[xpos][ypos]);
 				}
 			}
-
-			return vNeighbours;
 		}
 	}
 
@@ -85,7 +82,9 @@ namespace Grid
 		{
 			for (uint8_t y = 0; y < aFireflies[x].size(); ++y)
 			{
-				aFirefliesCopy[x][y].Sync(GetNeighbours(x, y));
+				std::vector<Firefly*> vNeighbours;
+				GetNeighbours(x, y, vNeighbours);
+				aFirefliesCopy[x][y].Sync(vNeighbours);
 			}
 		}
 		aFireflies = aFirefliesCopy;

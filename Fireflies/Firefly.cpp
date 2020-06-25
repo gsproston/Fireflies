@@ -14,15 +14,15 @@ Firefly::Firefly()
 	glowing = rand() % 2;
 }
 
-void Firefly::Sync(const std::vector<Firefly>& vNeighbours)
+void Firefly::Sync(const std::vector<Firefly*>& vNeighbours)
 {
 	float avgFreq = 0.f;
 	float avgRad = 0.f;
 
 	for (uint8_t i = 0; i < vNeighbours.size(); ++i)
 	{
-		avgFreq += vNeighbours[i].freq;
-		avgRad += vNeighbours[i].rad;
+		avgFreq += vNeighbours[i]->freq;
+		avgRad += vNeighbours[i]->rad;
 	}
 	avgFreq /= vNeighbours.size();
 	avgRad /= vNeighbours.size();
