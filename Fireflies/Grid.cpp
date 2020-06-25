@@ -17,6 +17,7 @@ namespace Grid
 		void GetNeighbours(const uint8_t x, const uint8_t y,
 			std::vector<Firefly*>& vNeighbours)
 		{
+			vNeighbours.clear();
 			for (int8_t i = -1; i <= 1; ++i)
 			{
 				const uint8_t xpos = x + i;
@@ -80,11 +81,11 @@ namespace Grid
 		}
 		aFirefliesCopy = aFireflies;
 
+		std::vector<Firefly*> vNeighbours;
 		for (uint8_t x = 0; x < aFireflies.size(); ++x)
 		{
 			for (uint8_t y = 0; y < aFireflies[x].size(); ++y)
 			{
-				std::vector<Firefly*> vNeighbours;
 				GetNeighbours(x, y, vNeighbours);
 				aFirefliesCopy[x][y].Sync(vNeighbours);
 			}
