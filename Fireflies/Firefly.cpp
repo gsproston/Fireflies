@@ -14,14 +14,6 @@ Firefly::Firefly()
 	glowing = rand() % 2;
 }
 
-sf::CircleShape Firefly::GetCircle() const
-{
-	sf::CircleShape circleShape(rad);
-	circleShape.setFillColor(sf::Color::Yellow);
-	circleShape.setPosition(Constants::FIREFLY_RADIUS - rad, Constants::FIREFLY_RADIUS - rad);
-	return circleShape;
-}
-
 void Firefly::Sync(const std::vector<Firefly>& vNeighbours)
 {
 	float avgFreq = 0.f;

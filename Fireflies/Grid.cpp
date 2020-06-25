@@ -59,9 +59,12 @@ namespace Grid
 		{
 			for (uint8_t y = 0; y < aFireflies[x].size(); ++y)
 			{
-				sf::CircleShape circleShape = aFireflies[x][y].GetCircle();
-				circleShape.move(x * Constants::FIREFLY_RADIUS * 2.f,
-					y * Constants::FIREFLY_RADIUS * 2.f);
+				const float rad = aFireflies[x][y].GetRad();
+				sf::CircleShape circleShape(rad);
+				circleShape.setFillColor(sf::Color::Yellow);
+				circleShape.setPosition(
+					x * Constants::FIREFLY_RADIUS * 2.f + Constants::FIREFLY_RADIUS - rad, 
+					y * Constants::FIREFLY_RADIUS * 2.f + Constants::FIREFLY_RADIUS - rad);
 				window.draw(circleShape);
 			}
 		}

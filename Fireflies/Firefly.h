@@ -9,7 +9,8 @@ class Firefly
 public:
 	Firefly();
 
-	sf::CircleShape GetCircle() const;
+	float GetRad() const { return this->rad; };
+
 	void Sync(const std::vector<Firefly>& vNeighbours);
 	void Tick(const sf::Time& elapsedTime);
 
