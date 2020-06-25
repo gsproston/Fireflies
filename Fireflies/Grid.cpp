@@ -52,13 +52,15 @@ namespace Grid
 
 	void Draw(sf::RenderWindow& window)
 	{
+		sf::CircleShape circleShape;
+		circleShape.setFillColor(sf::Color::Yellow);
+
 		for (uint8_t x = 0; x < aFireflies.size(); ++x)
 		{
 			for (uint8_t y = 0; y < aFireflies[x].size(); ++y)
 			{
 				const float rad = aFireflies[x][y].GetRad();
-				sf::CircleShape circleShape(rad);
-				circleShape.setFillColor(sf::Color::Yellow);
+				circleShape.setRadius(rad);
 				circleShape.setPosition(
 					x * Constants::FIREFLY_RADIUS * 2.f + Constants::FIREFLY_RADIUS - rad, 
 					y * Constants::FIREFLY_RADIUS * 2.f + Constants::FIREFLY_RADIUS - rad);
