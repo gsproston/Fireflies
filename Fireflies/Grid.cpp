@@ -87,7 +87,7 @@ namespace Grid
 			for (uint8_t y = 0; y < aFireflies[x].size(); ++y)
 			{
 				GetNeighbours(x, y, vNeighbours);
-				aFirefliesCopy[x][y].Sync(vNeighbours);
+				aFirefliesCopy[x][y].Sync(elapsedTime, vNeighbours);
 			}
 		}
 		aFireflies = aFirefliesCopy;
